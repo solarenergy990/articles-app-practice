@@ -1,0 +1,17 @@
+.heading {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button:not(:last-child) {
+  margin-right: 12px;
+}
+
+.articles {
+  margin-bottom: 24px;
+}
+
+.showMore {
+  display: flex;
+  justify-content: space-around;
+}

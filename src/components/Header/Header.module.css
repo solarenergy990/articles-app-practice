@@ -1,0 +1,11 @@
+.container {
+  margin-bottom: 40px;
+}
+
+.nav {
+  display: flex;
+}
+
+.item {
+  margin-right: 12px;
+}

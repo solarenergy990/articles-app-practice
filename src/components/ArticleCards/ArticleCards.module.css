@@ -1,0 +1,8 @@
+.list {
+  display: flex;
+  justify-content: space-around;
+}
+
+.item {
+  max-width: 320px;
+}
