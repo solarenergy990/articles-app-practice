@@ -62,7 +62,7 @@ const Home = () => {
         </div>
       </div>
       <div className={s.articles}>
-        <ArticleCards />
+        {articles && <ArticleCards articlesData={articles} />}
       </div>
       <div className={s.showMore}>
         {visibleButton && (

@@ -1,6 +1,7 @@
 .heading {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 24px;
 }
 
 .button:not(:last-child) {

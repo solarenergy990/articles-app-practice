@@ -3,9 +3,9 @@
 }
 
 .content {
-  background-color: white;
+  height: 24px;
+  overflow: hidden;
 }
-
 .card {
   filter: drop-shadow(4px 4px 4px rgba(55%, 55%, 55%, 0.6));
   box-shadow: 0 0 20px hsl(0deg 0% 55% / 50%);
