@@ -10,11 +10,16 @@ const initialColors = {
   magenta: '#EE67DB',
 };
 
-const ArticleCard = ({ cardTitle, cardText }) => {
+const ArticleCard = ({ cardTitle, cardText, currentId, setId, setActive }) => {
   const [color, setColor] = useState(initialColors.white);
 
   const styles = { backgroundColor: `${color}` };
 
+  const onSetId = () => {
+    setId(currentId);
+    setActive(true);
+    console.log(currentId);
+  };
   const onColorChange = () => {
     let keys = Object.keys(initialColors);
     let randomKey = Math.floor(Math.random() * keys.length);
@@ -26,12 +31,15 @@ const ArticleCard = ({ cardTitle, cardText }) => {
   return (
     <Card className={s.card}>
       <Card.Header as="h5">Article</Card.Header>
-
       {/* inline style here changes color dynamically */}
       <Card.Body style={styles}>
         <Card.Title className={s.title}>{cardTitle}</Card.Title>
         <Card.Text className={s.content}>{cardText}</Card.Text>
-        <Button variant="primary" className={s.button}>
+        <Button
+          variant="primary"
+          className={s.button}
+          onClick={() => onSetId()}
+        >
           Show card
         </Button>
         <Button
