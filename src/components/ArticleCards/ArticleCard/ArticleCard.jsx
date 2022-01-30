@@ -24,27 +24,25 @@ const ArticleCard = ({ cardTitle, cardText }) => {
     setColor(initialColors[randomColor]);
   };
   return (
-    <div>
-      <Card className={s.card}>
-        <Card.Header as="h5">Article</Card.Header>
+    <Card className={s.card}>
+      <Card.Header as="h5">Article</Card.Header>
 
-        {/* inline style here changes color dynamically */}
-        <Card.Body style={styles}>
-          <Card.Title>{cardTitle}</Card.Title>
-          <Card.Text className={s.content}>{cardText}</Card.Text>
-          <Button variant="primary" className={s.button}>
-            Show card
-          </Button>
-          <Button
-            variant="primary"
-            className={s.button}
-            onClick={() => onColorChange()}
-          >
-            Change color
-          </Button>
-        </Card.Body>
-      </Card>
-    </div>
+      {/* inline style here changes color dynamically */}
+      <Card.Body style={styles}>
+        <Card.Title className={s.title}>{cardTitle}</Card.Title>
+        <Card.Text className={s.content}>{cardText}</Card.Text>
+        <Button variant="primary" className={s.button}>
+          Show card
+        </Button>
+        <Button
+          variant="primary"
+          className={s.button}
+          onClick={() => onColorChange()}
+        >
+          Change color
+        </Button>
+      </Card.Body>
+    </Card>
   );
 };
 
