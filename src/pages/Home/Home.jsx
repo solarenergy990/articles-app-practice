@@ -10,7 +10,6 @@ import ArticlesAPI from '../../services/articles-api';
 const Home = () => {
   const [visibleButton, setVisibleButton] = useState(true);
   const [articles, setArticles] = useState(null);
-  const [hiddenButton, setHiddenButton] = useState(false);
 
   useEffect(() => {
     ArticlesAPI()
