@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CloseButton } from 'react-bootstrap';
+import s from './ModalArticle.module.css';
 
 const ModalArticle = ({ setActive, onOpenModal }) => {
   //   console.log(onOpenModal);
@@ -7,10 +8,13 @@ const ModalArticle = ({ setActive, onOpenModal }) => {
   const { title, body } = onOpenModal;
 
   return (
-    <div>
+    <div className={s.container}>
       <Card>
-        <Card.Header as="h5">
-          Featured <CloseButton onClick={setActive(false)} />
+        <Card.Header className={s.header} as="h5">
+          Featured
+          <div>
+            <CloseButton onClick={() => setActive(false)} />
+          </div>
         </Card.Header>
         <Card.Body>
           <Card.Title>{title}</Card.Title>
