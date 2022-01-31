@@ -11,7 +11,7 @@ const ModalArticle = ({ setActive, onOpenModal }) => {
     <div className={s.container}>
       <Card>
         <Card.Header className={s.header} as="h5">
-          Featured
+          Article
           <div>
             <CloseButton onClick={() => setActive(false)} />
           </div>

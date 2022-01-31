@@ -15,10 +15,7 @@ const Home = () => {
   const [modalActive, setModalActive] = useState(false);
   const [articleId, setArticleId] = useState(null);
   const [modalArticle, setModalArticle] = useState(null);
-
-  console.log(articleId);
-  console.log(modalArticle);
-  console.log(modalActive);
+  const [bigCards, setBigCards] = useState(false);
 
   useEffect(() => {
     ArticlesAPI()
@@ -63,6 +60,14 @@ const Home = () => {
     });
   };
 
+  const cardsSizeToggler = () => {
+    if (!bigCards) {
+      setBigCards(true);
+    } else {
+      setBigCards(false);
+    }
+  };
+
   return (
     <Container>
       {modalArticle && (
@@ -74,9 +79,25 @@ const Home = () => {
       <div className={s.heading}>
         <h2>Article List</h2>
         <div>
-          <Button type="button" variant="outline-primary" className={s.button}>
-            Make big cards
-          </Button>
+          {bigCards ? (
+            <Button
+              type="button"
+              variant="outline-primary"
+              className={s.button}
+              onClick={() => cardsSizeToggler()}
+            >
+              Make small cards
+            </Button>
+          ) : (
+            <Button
+              type="button"
+              variant="outline-primary"
+              className={s.button}
+              onClick={() => cardsSizeToggler()}
+            >
+              Make big cards
+            </Button>
+          )}
 
           <Button type="button" variant="outline-primary" className={s.button}>
             Add article
@@ -89,6 +110,7 @@ const Home = () => {
             articlesData={articles}
             setId={setArticleId}
             setActive={setModalActive}
+            setArticlesSize={bigCards}
           />
         )}
       </div>

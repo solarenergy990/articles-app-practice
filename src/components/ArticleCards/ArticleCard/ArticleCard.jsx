@@ -18,8 +18,8 @@ const ArticleCard = ({ cardTitle, cardText, currentId, setId, setActive }) => {
   const onSetId = () => {
     setId(currentId);
     setActive(true);
-    console.log(currentId);
   };
+
   const onColorChange = () => {
     let keys = Object.keys(initialColors);
     let randomKey = Math.floor(Math.random() * keys.length);
