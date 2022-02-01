@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
+import s from './CloseModal.module.css';
 
 const CloseModal = ({ setActive, setClose, deleteArticle, setId }) => {
   const onDeleteCard = () => {
@@ -19,17 +20,16 @@ const CloseModal = ({ setActive, setClose, deleteArticle, setId }) => {
     <div>
       <Card style={{ width: '18rem' }}>
         <Card.Body>
-          <Card.Title>Card Title</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text>
-          <Button variant="danger" onClick={() => onDeleteCard()}>
-            Yes
-          </Button>
-          <Button variant="primary" onClick={() => onCloseModal()}>
-            No
-          </Button>
+          <Card.Title className={s.title}>Delete article</Card.Title>
+          <Card.Text className={s.text}>Are You sure?</Card.Text>
+          <div className={s.wrapper}>
+            <Button variant="danger" onClick={() => onDeleteCard()}>
+              Yes
+            </Button>
+            <Button variant="primary" onClick={() => onCloseModal()}>
+              No
+            </Button>
+          </div>
         </Card.Body>
       </Card>
     </div>

@@ -23,8 +23,6 @@ const Home = () => {
   const [articleForm, setArticleForm] = useState(false);
   const [closedModal, setClosedModal] = useState(true);
 
-  console.log(closedModal);
-
   useEffect(() => {
     ArticlesAPI()
       .then(res => {
@@ -56,9 +54,6 @@ const Home = () => {
   }, [articles, articleId, closedModal]);
 
   const onDeleteArticle = () => {
-    // console.log(closedModal);
-    // console.log(articleId);
-
     const filteredArticles = articles.filter(
       article => article.id !== articleId,
     );
