@@ -6,6 +6,9 @@ import Container from '../../components/Container/Container';
 import ArticleCards from '../../components/ArticleCards/ArticleCards';
 import Modal from '../../components/Modal/Modal';
 import ModalArticle from '../../components/ArticleCards/ModalArticle/ModalArticle';
+import ArticleForm from '../../components/ArticleForm/ArticleForm';
+
+import shortid from 'shortid';
 
 import ArticlesAPI from '../../services/articles-api';
 
@@ -16,6 +19,10 @@ const Home = () => {
   const [articleId, setArticleId] = useState(null);
   const [modalArticle, setModalArticle] = useState(null);
   const [bigCards, setBigCards] = useState(false);
+  const [articleForm, setArticleForm] = useState(false);
+
+  // console.log(modalArticle);
+  // console.log(articleId);
 
   useEffect(() => {
     ArticlesAPI()
@@ -38,10 +45,9 @@ const Home = () => {
   }, [articles]);
 
   useEffect(() => {
-    if (articles && articleId) {
+    if (articleId) {
       const foundArticle = articles.find(article => article.id === articleId);
       setModalArticle(foundArticle);
-      // console.log(foundArticle);
     }
   }, [articles, articleId]);
 
@@ -68,13 +74,51 @@ const Home = () => {
     }
   };
 
+  const addArticle = data => {
+    const { title, body } = data;
+
+    const article = {
+      id: shortid.generate(),
+      title,
+      body,
+    };
+
+    setArticles(prevArticles => {
+      return [...prevArticles, article];
+    });
+  };
+
+  const onOpenFormModal = () => {
+    setArticleForm(true);
+    setModalActive(true);
+  };
+
   return (
     <Container>
-      {modalArticle && (
-        <Modal active={modalActive} setActive={setModalActive}>
-          <ModalArticle setActive={setModalActive} onOpenModal={modalArticle} />
-        </Modal>
-      )}
+      <Modal
+        active={modalActive}
+        setActive={setModalActive}
+        setId={setArticleId}
+        setArticle={setModalArticle}
+        setForm={setArticleForm}
+      >
+        {modalArticle && (
+          <ModalArticle
+            setActive={setModalActive}
+            onOpenModal={modalArticle}
+            setId={setArticleId}
+            setArticle={setModalArticle}
+          />
+        )}
+        {articleForm && (
+          <ArticleForm
+            setActive={setModalActive}
+            onOpenModal={setArticleForm}
+            onSubmit={addArticle}
+            setForm={setArticleForm}
+          />
+        )}
+      </Modal>
 
       <div className={s.heading}>
         <h2>Article List</h2>
@@ -99,7 +143,12 @@ const Home = () => {
             </Button>
           )}
 
-          <Button type="button" variant="outline-primary" className={s.button}>
+          <Button
+            type="button"
+            variant="outline-primary"
+            className={s.button}
+            onClick={() => onOpenFormModal()}
+          >
             Add article
           </Button>
         </div>

@@ -15,7 +15,7 @@ const ArticleCard = ({ cardTitle, cardText, currentId, setId, setActive }) => {
 
   const styles = { backgroundColor: `${color}` };
 
-  const onSetId = () => {
+  const onHandleClick = () => {
     setId(currentId);
     setActive(true);
   };
@@ -38,7 +38,7 @@ const ArticleCard = ({ cardTitle, cardText, currentId, setId, setActive }) => {
         <Button
           variant="primary"
           className={s.button}
-          onClick={() => onSetId()}
+          onClick={() => onHandleClick()}
         >
           Show card
         </Button>
