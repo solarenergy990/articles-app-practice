@@ -13,10 +13,6 @@ const ArticleForm = ({ setActive, onOpenModal, onSubmit, setForm }) => {
   const handleChange = evt => {
     const { value } = evt.target;
 
-    console.log(evt.currentTarget);
-
-    console.log(value);
-
     if (evt.currentTarget.name === 'title') {
       setTitle(value);
     }
@@ -52,7 +48,6 @@ const ArticleForm = ({ setActive, onOpenModal, onSubmit, setForm }) => {
             name="title"
             placeholder="Add title"
             onChange={handleChange}
-            // value={title}
           />
         </Form.Group>
 
@@ -65,7 +60,6 @@ const ArticleForm = ({ setActive, onOpenModal, onSubmit, setForm }) => {
             name="body"
             placeholder="Add article"
             onChange={handleChange}
-            // value={body}
           />
         </Form.Group>
 

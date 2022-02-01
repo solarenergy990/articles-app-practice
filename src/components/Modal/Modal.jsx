@@ -1,12 +1,21 @@
 import React from 'react';
 import s from './Modal.module.css';
 
-const Modal = ({ active, setActive, children, setId, setArticle, setForm }) => {
+const Modal = ({
+  active,
+  setActive,
+  children,
+  setId,
+  setArticle,
+  setForm,
+  setClose,
+}) => {
   const onHandleClick = () => {
     setActive(false);
     setId(null);
     setTimeout(() => setForm(false), 500);
     setTimeout(() => setArticle(null), 500);
+    setTimeout(() => setClose(true), 500);
   };
 
   return (

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, CloseButton } from 'react-bootstrap';
 import s from './ArticleCard.module.css';
 
 const initialColors = {
@@ -10,7 +10,14 @@ const initialColors = {
   magenta: '#EE67DB',
 };
 
-const ArticleCard = ({ cardTitle, cardText, currentId, setId, setActive }) => {
+const ArticleCard = ({
+  cardTitle,
+  cardText,
+  currentId,
+  setId,
+  setActive,
+  closeModal,
+}) => {
   const [color, setColor] = useState(initialColors.white);
 
   const styles = { backgroundColor: `${color}` };
@@ -28,9 +35,21 @@ const ArticleCard = ({ cardTitle, cardText, currentId, setId, setActive }) => {
 
     setColor(initialColors[randomColor]);
   };
+
+  const onDeleteCard = () => {
+    setId(currentId);
+    setActive(true);
+    closeModal(false);
+  };
+
   return (
     <Card className={s.card}>
-      <Card.Header as="h5">Article</Card.Header>
+      <Card.Header as="h5" className={s.header}>
+        Article
+        <div>
+          <CloseButton onClick={() => onDeleteCard()} />
+        </div>
+      </Card.Header>
       {/* inline style here changes color dynamically */}
       <Card.Body style={styles}>
         <Card.Title className={s.title}>{cardTitle}</Card.Title>

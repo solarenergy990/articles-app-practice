@@ -2,7 +2,13 @@ import React from 'react';
 import s from './ArticleCards.module.css';
 import ArticleCard from './ArticleCard/ArticleCard';
 
-const ArticleCards = ({ articlesData, setId, setActive, setArticlesSize }) => {
+const ArticleCards = ({
+  articlesData,
+  setId,
+  setActive,
+  setArticlesSize,
+  closeModal,
+}) => {
   const bigCards = { maxWidth: '520px' };
   const smallCards = { maxWidth: '320px' };
 
@@ -19,6 +25,7 @@ const ArticleCards = ({ articlesData, setId, setActive, setArticlesSize }) => {
                 setId={setId}
                 currentId={id}
                 setActive={setActive}
+                closeModal={closeModal}
               />
             </li>
           );

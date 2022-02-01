@@ -7,6 +7,7 @@ import ArticleCards from '../../components/ArticleCards/ArticleCards';
 import Modal from '../../components/Modal/Modal';
 import ModalArticle from '../../components/ArticleCards/ModalArticle/ModalArticle';
 import ArticleForm from '../../components/ArticleForm/ArticleForm';
+import CloseModal from '../../components/CloseModal/CloseModal';
 
 import shortid from 'shortid';
 
@@ -20,9 +21,9 @@ const Home = () => {
   const [modalArticle, setModalArticle] = useState(null);
   const [bigCards, setBigCards] = useState(false);
   const [articleForm, setArticleForm] = useState(false);
+  const [closedModal, setClosedModal] = useState(true);
 
-  // console.log(modalArticle);
-  // console.log(articleId);
+  console.log(closedModal);
 
   useEffect(() => {
     ArticlesAPI()
@@ -30,7 +31,7 @@ const Home = () => {
         if (!articles) {
           setArticles(res.slice(0, 3));
         }
-        console.log(articles);
+        // console.log(articles);
       })
       .catch(error => console.log('something went wrong', error));
   }, [articles]);
@@ -45,11 +46,24 @@ const Home = () => {
   }, [articles]);
 
   useEffect(() => {
+    if (!closedModal) {
+      return;
+    }
     if (articleId) {
       const foundArticle = articles.find(article => article.id === articleId);
       setModalArticle(foundArticle);
     }
-  }, [articles, articleId]);
+  }, [articles, articleId, closedModal]);
+
+  const onDeleteArticle = () => {
+    // console.log(closedModal);
+    // console.log(articleId);
+
+    const filteredArticles = articles.filter(
+      article => article.id !== articleId,
+    );
+    setArticles([...filteredArticles]);
+  };
 
   const onShowMore = async () => {
     await ArticlesAPI().then(res => {
@@ -101,6 +115,7 @@ const Home = () => {
         setId={setArticleId}
         setArticle={setModalArticle}
         setForm={setArticleForm}
+        setClose={setClosedModal}
       >
         {modalArticle && (
           <ModalArticle
@@ -116,6 +131,15 @@ const Home = () => {
             onOpenModal={setArticleForm}
             onSubmit={addArticle}
             setForm={setArticleForm}
+          />
+        )}
+        {!closedModal && (
+          <CloseModal
+            setActive={setModalActive}
+            setClose={setClosedModal}
+            setArticle={setModalArticle}
+            deleteArticle={onDeleteArticle}
+            setId={setArticleId}
           />
         )}
       </Modal>
@@ -160,6 +184,7 @@ const Home = () => {
             setId={setArticleId}
             setActive={setModalActive}
             setArticlesSize={bigCards}
+            closeModal={setClosedModal}
           />
         )}
       </div>
